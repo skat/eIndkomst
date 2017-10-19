@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:esws="urn:oio:skat:es:ws:1.0.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn:oio:skat:es:ws:1.0.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="OIOAbonnentVirksomhedStamOplysningHentService">
+	<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+		<xs:documentation>Formålet er at hente stamoplysninger for en virksomhed. Der hentes oplysninger, som er gældende pr. dags dato.  Der hentes oplysninger om: Virksomhedens start- og eventuelle ophørsdato i relation til told-, skatte- og afgiftslovgivningen, virksomhedens korte og lange navn, virksomhedens adresse samt eventuel tele-fonnummer og EmailAdresse.  Servicen udstilles alene til de myndigheder og andre, som har indgået en abonnementsaftale med told- og Skatteforvaltningen herom. </xs:documentation>
+	</xs:annotation>
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:oio:skat:es:ws:1.0.0">
+			<xsd:include schemaLocation="http://digitaliser.dk/resource/2401713/artefact/OIOAbonnentVirksomhedStamOplysningHentInterface.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="OIOAbonnentVirksomhedStamOplysningHentServiceRequest">
+		<wsdl:part name="Request" element="esws:OIOAbonnentVirksomhedStamOplysningHent_I"/>
+	</wsdl:message>
+	<wsdl:message name="OIOAbonnentVirksomhedStamOplysningHentServiceResponse">
+		<wsdl:part name="Response" element="esws:OIOAbonnentVirksomhedStamOplysningHent_O"/>
+	</wsdl:message>
+	<wsdl:portType name="OIOAbonnentVirksomhedStamOplysningHentServicePortType">
+		<wsdl:operation name="getOIOAbonnentVirksomhedStamOplysningHent">
+			<wsdl:input message="esws:OIOAbonnentVirksomhedStamOplysningHentServiceRequest"/>
+			<wsdl:output message="esws:OIOAbonnentVirksomhedStamOplysningHentServiceResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="OIOAbonnentVirksomhedStamOplysningHentServiceBinding" type="esws:OIOAbonnentVirksomhedStamOplysningHentServicePortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="getOIOAbonnentVirksomhedStamOplysningHent">
+			<soap:operation soapAction="getOIOAbonnentVirksomhedStamOplysningHent"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="OIOAbonnentVirksomhedStamOplysningHentServiceBindingQSService">
+		<wsdl:port name="OIOAbonnentVirksomhedStamOplysningHentServiceBindingQSPort" binding="esws:OIOAbonnentVirksomhedStamOplysningHentServiceBinding">
+			<soap:address location="https://services.extranet.skat.dk/vericert/services/OIOAbonnentVirksomhedStamOplysningHentServicePort"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
